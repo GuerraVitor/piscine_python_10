@@ -30,20 +30,55 @@ def mage_stats(mages: list[dict]) -> dict:
 
 def main():
     artifacts = [
-        {'name': 'Crystal Orb', 'power': 85, 'type': 'scrying'},
-        {'name': 'Fire Staff', 'power': 92, 'type': 'combat'},
-        {'name': 'Old Wand', 'power': 15, 'type': 'training'}
+        {'name': "Gabigol's Muque", 'power': 8100, 'type': 'magical'},
+        {'name': 'Danilos Header', 'power': 9600, 'type': 'finalization'},
+        {'name': 'Arrascas Cake', 'power': 3000, 'type': 'healing'}
     ]
-    sorted_artifacts = artifact_sorter(artifacts)
-    print("Testing artifact sorter...")
-    print(f"{sorted_artifacts[0]['name']} ({sorted_artifacts[0]['power']}"
-          "power) comes before {sorted_artifacts[1]['name']}"
-          "({sorted_artifacts[1]['power']} power)")
 
-    spells = ["fireball", "heal", "shield"]
+    sorted_artifacts = artifact_sorter(artifacts)
+    print("\n ==== Testing sorter ====")
+    for item in sorted_artifacts:
+        print(f"{item['name']} ({item['power']} power)")
+
+    print()
+    print("-"*40)
+    print()
+
+    mages = [
+        {'name': "Zico", 'power': 100000, 'element': "free kicks"},
+        {'name': "Arrascaeta", 'power': 7500, 'element': "Cakes"},
+        {'name': "Bruno Henrique", 'power': 7450, 'element': "king of derbys"},
+        {'name': "Joker Gerson", 'power': 500, 'element': "treason"}
+    ]
+
+    filtered_items = power_filter(mages, 8000)
+    print(" ==== all mages registered ====")
+    for mage in mages:
+        print(f"{mage['name']} - a.k.a (element): {mage['element']}")
+    print("\n ==== testing filter (power more than 8000) ====")
+    for item in filtered_items:
+        print(f"{item['name']} - power: {item['power']}")
+
+    print()
+    print("-"*40)
+    print()
+
+    spells = ["Cera", "Caatimba", "provocation"]
+
     transformed_spells = spell_transformer(spells)
-    print("\nTesting spell transformer...")
-    print(" ".join(transformed_spells))
+    print(" ==== Testing spell transformer: ====")
+    for spell in transformed_spells:
+        print(spell)
+
+    print()
+    print("-"*40)
+    print()
+
+    mages_analized = mage_stats(mages)
+    print("==== Stats of mages ====")
+    print(f"most powerful: {mages_analized['max_power']}\n"
+          f"least powerful: {mages_analized['min_power']}\n"
+          f"average power: {mages_analized['avg_power']}")
 
 
 if __name__ == "__main__":
